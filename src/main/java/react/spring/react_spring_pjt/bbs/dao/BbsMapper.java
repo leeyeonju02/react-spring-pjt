@@ -7,10 +7,12 @@ import react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
 
 import java.util.List;
-
+import java.util.Map;
 @Mapper
 public interface BbsMapper {
     public List<BbsResponseDTO> findAllRow();
 
     public void insertRow(BbsRequestDTO params);
+
+    public BbsResponseDTO findRow(Map<String, Integer> id);
 }

@@ -14,4 +14,9 @@
 
 
 
+    <!-- findRow --> 
+
+    <select id="findRow" parameterType="java.util.HashMap" resultType="react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO">
+     SELECT ID, TITLE, CONTENT FROM TB_BBS WHERE ID = #{id}
+    </select>
 </mapper>

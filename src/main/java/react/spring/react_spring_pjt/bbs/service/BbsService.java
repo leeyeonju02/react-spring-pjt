@@ -8,6 +8,7 @@ import react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BbsService {
@@ -21,6 +22,11 @@ public class BbsService {
     public void create(BbsRequestDTO params) {
         System.out.println("debug >>> service create " + bbsMapper);
         bbsMapper.insertRow(params);
+    }
+
+    public BbsResponseDTO find(Map<String, Integer> id) {
+        System.out.println("debug >>> service find " + bbsMapper);
+        return bbsMapper.findRow(id);
     }
 
     

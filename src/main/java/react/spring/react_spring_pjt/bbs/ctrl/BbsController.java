@@ -11,13 +11,13 @@ import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
 import react.spring.react_spring_pjt.bbs.service.BbsService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -27,13 +27,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/bbs") //엔드포인트 지정 
 public class BbsController {
     @Autowired
-    private BbsService BbsService;
+    private BbsService bbsService;
 
     //ResponseEntity : 비동기 통신을 위한 
     @GetMapping("/index") //user endpoint : http:// ip : port /bbs/index
     public ResponseEntity<Object> landing() {
-        System.out.println("client endpoint : /bbs/index" + BbsService);
-        List<BbsResponseDTO> list = BbsService.findAll();
+        System.out.println("client endpoint : /bbs/index" + bbsService);
+        List<BbsResponseDTO> list = bbsService.findAll();
         System.out.println("result size = " + list.size());
         if( list.size() == 0) {
             Map<String, String> map = new HashMap<>();
@@ -48,14 +48,23 @@ public class BbsController {
     public ResponseEntity<Void> save(@RequestBody BbsRequestDTO params) {
         System.out.println("client endpoint : /bbs/save");
         System.out.println("params : " + params);
-        BbsService.create(params);
+        bbsService.create(params);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/bbs-view/{id}")
-    public String getMethodName(@RequestParam String param) {
-        return new String();
+    @GetMapping("/view/{id}")
+    public ResponseEntity<BbsResponseDTO> view(@PathVariable(name="id") Integer id) {
+        System.out.println("debug >>> bbs controller client path /select");
+        System.out.println("debug >>> id param value " + id);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("id",id);
+        BbsResponseDTO result = bbsService.find(map);
+
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    
     
 
     
