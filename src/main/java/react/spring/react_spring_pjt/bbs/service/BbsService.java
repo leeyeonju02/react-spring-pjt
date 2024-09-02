@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import react.spring.react_spring_pjt.bbs.dao.BbsMapper;
 import react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
+import react.spring.react_spring_pjt.bbs.domain.comment.CommentResponseDTO;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 @Service
@@ -24,9 +26,12 @@ public class BbsService {
         bbsMapper.insertRow(params);
     }
 
-    public BbsResponseDTO find(Map<String, Integer> id) {
+    public BbsResponseDTO find(Map<String, Integer> map) {
         System.out.println("debug >>> service find " + bbsMapper);
-        return bbsMapper.findRow(id);
+        BbsResponseDTO result = bbsMapper.findRow(map);
+        List<CommentResponseDTO> list = bbsMapper.findByIdComment(map);
+        result.setComments(list);
+        return result;
     }
 
     

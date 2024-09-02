@@ -19,4 +19,11 @@
     <select id="findRow" parameterType="java.util.HashMap" resultType="react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO">
      SELECT ID, TITLE, CONTENT FROM TB_BBS WHERE ID = #{id}
     </select>
-</mapper>
+
+    <!-- findByIdComment --> 
+
+    <select id="findByIdComment" parameterType="java.util.HashMap" resultType="react.spring.react_spring_pjt.bbs.domain.comment.CommentResponseDTO">
+        SELECT ID, CONTENT, BBSID FROM TB_COMMENT WHERE BBSID = #{id}
+    </select>
+
+ </mapper>
