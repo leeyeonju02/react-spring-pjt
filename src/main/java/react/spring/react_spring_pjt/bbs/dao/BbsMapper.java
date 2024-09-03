@@ -25,5 +25,7 @@ public interface BbsMapper {
 
     public void insertCommentRow(CommentRequestDTO params);
 
+    public void updateRow(BbsRequestDTO params);
+
 
 }

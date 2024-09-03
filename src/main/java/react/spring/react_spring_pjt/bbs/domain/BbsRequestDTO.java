@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class BbsRequestDTO {
+    private Integer id;
     private String title;
     private String content;
 }

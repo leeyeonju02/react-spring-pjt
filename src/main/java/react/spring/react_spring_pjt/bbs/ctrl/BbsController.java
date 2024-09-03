@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -101,6 +103,15 @@ public class BbsController {
 
         bbsService.delete(map);
       
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Void> update(@RequestBody BbsRequestDTO params) {
+        System.out.println("debug >>> bbs controller client path : /bbs/update ");
+        System.out.println("debug >>> bbsid param value " + params);
+        bbsService.update(params);
+        
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     

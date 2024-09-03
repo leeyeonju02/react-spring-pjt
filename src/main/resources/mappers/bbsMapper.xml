@@ -42,4 +42,10 @@
     <delete id="deleteRow" parameterType="java.util.HashMap" > 
     DELETE FROM TB_BBS WHERE ID = #{id}
     </delete>    
-     </mapper>
+
+    <!-- updateRow --> 
+
+    <update id="updateRow" parameterType="react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO">
+    UPDATE TB_BBS SET TITLE = #{title}, CONTENT=#{content} WHERE ID = #{id}
+    
+    </update>     </mapper>

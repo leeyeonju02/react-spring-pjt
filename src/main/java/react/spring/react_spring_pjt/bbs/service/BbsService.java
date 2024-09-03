@@ -51,6 +51,11 @@ public class BbsService {
         System.out.println("debug >>> service find " + bbsMapper);
         bbsMapper.deleteRow(map);
     }
+
+    public void update(BbsRequestDTO params) {
+        System.out.println("debug >>> service update , " + bbsMapper);
+        bbsMapper.updateRow(params);
+    }
     
 
 
