@@ -39,6 +39,18 @@ public class BbsService {
         System.out.println("debug >>> comment service create " + bbsMapper);
         bbsMapper.insertCommentRow(params);
     }
+
+ 
+
+    public List<CommentResponseDTO> findComment(Map<String, Integer> map) {
+        System.out.println("debug >>> service find " + bbsMapper);
+        return bbsMapper.findByIdComment(map);
+    }
+
+    public void delete(Map<String, Integer> map) {
+        System.out.println("debug >>> service find " + bbsMapper);
+        bbsMapper.deleteRow(map);
+    }
     
 
 

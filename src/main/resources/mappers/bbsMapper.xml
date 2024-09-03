@@ -31,4 +31,15 @@
     <insert id="insertCommentRow" parameterType="react.spring.react_spring_pjt.bbs.domain.comment.CommentRequestDTO">
         INSERT INTO TB_COMMENT(CONTENT, BBSID) VALUES (#{content}, #{bbsid})
     </insert>
- </mapper>
+
+ 
+
+  
+    
+
+    <!-- deleteRow --> 
+
+    <delete id="deleteRow" parameterType="java.util.HashMap" > 
+    DELETE FROM TB_BBS WHERE ID = #{id}
+    </delete>    
+     </mapper>

@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
 import react.spring.react_spring_pjt.bbs.domain.comment.CommentRequestDTO;
-
+import react.spring.react_spring_pjt.bbs.domain.comment.CommentResponseDTO;
 import react.spring.react_spring_pjt.bbs.service.BbsService;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -77,8 +78,30 @@ public class BbsController {
         System.out.println(" >>> request dto, " + params);
         bbsService.createComment(params);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        
-       
+    }
+
+    @GetMapping("/comment/getComment/{id}")
+    public ResponseEntity<List<CommentResponseDTO>> Commentview(@PathVariable(name="id") Integer bbsid) {
+        System.out.println("debug >>> bbs controller client path : /bbs/comment/getComment ");
+        System.out.println("debug >>> bbsid param value " + bbsid);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("id", bbsid);
+        List<CommentResponseDTO> list = bbsService.findComment(map);
+        System.out.println("result size = " + list.size());
+
+        return new ResponseEntity<List<CommentResponseDTO>>(list, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{bbsid}")
+    public ResponseEntity<Void> delete(@PathVariable(name="bbsid") Integer id) {
+        System.out.println("debug >>> bbs controller client path : /bbs/delete ");
+        System.out.println("debug >>> bbsid param value " + id);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("id", id);
+
+        bbsService.delete(map);
+      
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
 

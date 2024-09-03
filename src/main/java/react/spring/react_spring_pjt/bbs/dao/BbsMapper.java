@@ -10,15 +10,20 @@ import react.spring.react_spring_pjt.bbs.domain.comment.CommentResponseDTO;
 
 import java.util.List;
 import java.util.Map;
+
 @Mapper
 public interface BbsMapper {
     public List<BbsResponseDTO> findAllRow();
 
     public void insertRow(BbsRequestDTO params);
 
+    public void deleteRow(Map<String, Integer> map);
+
     public BbsResponseDTO findRow(Map<String, Integer> id);
 
     public List<CommentResponseDTO> findByIdComment(Map<String, Integer> map);
 
     public void insertCommentRow(CommentRequestDTO params);
+
+
 }
