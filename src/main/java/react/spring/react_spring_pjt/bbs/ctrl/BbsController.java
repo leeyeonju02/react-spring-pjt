@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
+import react.spring.react_spring_pjt.bbs.domain.comment.CommentRequestDTO;
+
 import react.spring.react_spring_pjt.bbs.service.BbsService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,6 +65,22 @@ public class BbsController {
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+    /*step 02
+     * 1. 넘어온 데이터를 서비스( createComment() )로 전달하고 
+     * 2. 서비스에서 매퍼의 도움으로 DB - Table 입력 
+     * 3. ResponseEntity<Void> 타입으로 status NO_COntent 반환
+     */
+
+    @PostMapping("/comment/save")
+    public ResponseEntity<Void> commentSave(@RequestBody CommentRequestDTO params) {
+        System.out.println("debug >>> bbs controller client path / comment/post");
+        System.out.println(" >>> request dto, " + params);
+        bbsService.createComment(params);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        
+       
+    }
+    
 
     
     

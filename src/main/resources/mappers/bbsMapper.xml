@@ -26,4 +26,9 @@
         SELECT ID, CONTENT, BBSID FROM TB_COMMENT WHERE BBSID = #{id}
     </select>
 
+    <!-- insertCommentRow --> 
+
+    <insert id="insertCommentRow" parameterType="react.spring.react_spring_pjt.bbs.domain.comment.CommentRequestDTO">
+        INSERT INTO TB_COMMENT(CONTENT, BBSID) VALUES (#{content}, #{bbsid})
+    </insert>
  </mapper>

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import react.spring.react_spring_pjt.bbs.domain.BbsRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.BbsResponseDTO;
+import react.spring.react_spring_pjt.bbs.domain.comment.CommentRequestDTO;
 import react.spring.react_spring_pjt.bbs.domain.comment.CommentResponseDTO;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface BbsMapper {
     public BbsResponseDTO findRow(Map<String, Integer> id);
 
     public List<CommentResponseDTO> findByIdComment(Map<String, Integer> map);
+
+    public void insertCommentRow(CommentRequestDTO params);
 }
