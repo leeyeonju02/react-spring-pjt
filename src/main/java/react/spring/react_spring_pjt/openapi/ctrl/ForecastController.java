@@ -11,12 +11,16 @@ import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import react.spring.react_spring_pjt.openapi.domain.ForecastItemDTO;
 import react.spring.react_spring_pjt.openapi.service.ForecastService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -35,7 +39,7 @@ public class ForecastController {
     private String dataType;
 
     @GetMapping("/forecast")
-    public String callForecastApi(
+    public ResponseEntity<List<ForecastItemDTO>> callForecastApi(
                 @RequestParam(value = "base_time") String baseTime,
                 @RequestParam(value = "base_date") String baseDate,
                 @RequestParam(value = "beach_num") String beachNum) {
@@ -61,6 +65,7 @@ public class ForecastController {
         HttpURLConnection http = null ;
         InputStream stream = null ;
         String result = null ;
+        List<ForecastItemDTO> list = null;
 
         try {
             URL url = new URL(requestURL);
@@ -73,7 +78,7 @@ public class ForecastController {
                 result = readString(stream);
                 System.out.println("result = " + result);
 
-                forecastService.parsingJson(result);
+                list = forecastService.parsingJson(result);
             } else {
                 
             }
@@ -83,7 +88,7 @@ public class ForecastController {
 
         }
 
-        return null;
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 
