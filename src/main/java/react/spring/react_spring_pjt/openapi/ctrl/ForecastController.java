@@ -17,12 +17,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+//import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import react.spring.react_spring_pjt.openapi.domain.ForecastItemDTO;
 import react.spring.react_spring_pjt.openapi.domain.ForecastRequestDTO;
@@ -104,7 +105,7 @@ public class ForecastController {
 
 
 
-    @GetMapping("/vaildate/forecast")
+    @PostMapping("/vaildate/forecast")
     public ResponseEntity<Object> vaildateForecastApi(@Valid @RequestBody ForecastRequestDTO params, BindingResult bindingResult) {
           //params로 넘어오는 값을 Valid 어노테이션을 통해 유효성 체크 후 메세지 반환시 BindingResult에 담아서 반환     
 
